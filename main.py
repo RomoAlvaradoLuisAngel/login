@@ -5,7 +5,7 @@ def main(page : ft.Page):
     page.vertical_alignment=ft.MainAxisAlignment.CENTER
     page.horizontal_alignment=ft.CrossAxisAlignment.CENTER
     page.padding=30
-    page.bgcolor = "#97FFA5"
+    page.bgcolor = "#464646"
     USUARIO_VALIDO="admin"
     CONTRASEñA_VALIDA = "123456"
     
@@ -15,6 +15,7 @@ def main(page : ft.Page):
         
         if usuario == USUARIO_VALIDO and contrasena == CONTRASEñA_VALIDA:
             page.show_dialog(ft.SnackBar(ft.Text("Inicio de sesion exitoso.")))
+            mostrar_pantalla_principal()
         else:
             page.show_dialog(ft.SnackBar(ft.Text("Usuario o contraseña erronea.")))
         
@@ -26,7 +27,7 @@ def main(page : ft.Page):
         hint_text="Escriba su usuario",
         value="",
         autofocus=True,
-        suffix_icon=(ft.Icon(ft.Icons.PERSON, color=ft.Colors.PRIMARY, size=25)),
+        suffix_icon=(ft.Icon(ft.Icons.PERSON, color=ft.Colors.GREEN, size=25)),
         height = 50,
         can_reveal_password=True
     )
@@ -34,7 +35,7 @@ def main(page : ft.Page):
         label="Contraseña",
         hint_text="Escriba su contraseña",
         value="",
-        suffix_icon=(ft.Icon(ft.Icons.PASSWORD, color=ft.Colors.PRIMARY, size=25)),
+        suffix_icon=(ft.Icon(ft.Icons.PASSWORD, color=ft.Colors.GREEN, size=25)),
         password=True
 
     )
@@ -54,7 +55,7 @@ def main(page : ft.Page):
             horizontal_alignment=ft.CrossAxisAlignment.CENTER,
             controls=[
                 ft.Text(value="Inicio Sesion", weight=ft.FontWeight.BOLD, size=25),
-                ft.Icon(ft.Icons.FACE, color=ft.Colors.PRIMARY, size=100),
+                ft.Icon(ft.Icons.FACE, color=ft.Colors.WHITE, size=100),
                 txt_usuario,
                 password,
                 btn_login,
@@ -64,35 +65,36 @@ def main(page : ft.Page):
         )
     def mostrar_pantalla_principal():
         page.clean()
-        
-    page.navigation_bar=ft.NavigationBar(
-        destinations=[
-            ft.NavigationBarDestination(icon=ft.Icons.HOME, label="Inicio"),
-            ft.NavigationBarDestination(icon=ft.Icons.HOME, label="Informacion"),
-            ft.NavigationBarDestination(icon=ft.Icons.PERSON, label="Inicio de sesion"),
-        ],
-        on_change = lambda e: print(f"Seleccionado: {e.control.selected_index}")
-    )
-    
-    page.add(
-        ft.AppBar(
-            title=ft.Text("Panel principal"),
-            bgcolor=ft.Colors.BLUE_900,
-            color=ft.Colors.WHITE,
-            automatically_imply_leading=False
-        ),
-        ft.Column(
-            [
-                ft.Text("Bienvenido al sistema."),
-                ft.Text("Has iniciado sesion correctamente.")
+            
+        page.navigation_bar=ft.NavigationBar(
+            destinations=[
+                ft.NavigationBarDestination(icon=ft.Icons.HOME, label="Inicio"),
+                ft.NavigationBarDestination(icon=ft.Icons.INFO, label="Informacion"),
+                ft.NavigationBarDestination(icon=ft.Icons.PERSON, label="Inicio de sesion"),
             ],
-            expand=True,
-            alignment=ft.MainAxisAlignment.CENTER,
-            horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+            on_change = lambda e: print(f"Seleccionado: {e.control.selected_index}")
         )
-    )
-    page.update()
-    
+        
+        page.add(
+            ft.AppBar(
+                title=ft.Text("Panel principal"),
+                bgcolor=ft.Colors.BLUE_900,
+                color=ft.Colors.WHITE,
+                automatically_imply_leading=False
+            ),
+            ft.Column(
+                [
+                    ft.Icon(ft.Icons.BOLT, color=ft.Colors.YELLOW, size=100),
+                    ft.Text("Bienvenido al sistema."),
+                    ft.Text("Has iniciado sesion correctamente.")
+                ],
+                expand=True,
+                alignment=ft.MainAxisAlignment.CENTER,
+                horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+            )
+        )
+        page.update()
+        
     ##page.add(layout_login)
 
     
