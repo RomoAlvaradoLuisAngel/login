@@ -5,7 +5,7 @@ def main(page : ft.Page):
     page.vertical_alignment=ft.MainAxisAlignment.CENTER
     page.horizontal_alignment=ft.CrossAxisAlignment.CENTER
     page.padding=30
-    page.bgcolor = '#9DCCFF'
+    page.bgcolor = "#97FFA5"
     USUARIO_VALIDO="admin"
     CONTRASEñA_VALIDA = "123456"
     
@@ -27,7 +27,8 @@ def main(page : ft.Page):
         value="",
         autofocus=True,
         suffix_icon=(ft.Icon(ft.Icons.PERSON, color=ft.Colors.PRIMARY, size=25)),
-        height = 50
+        height = 50,
+        can_reveal_password=True
     )
     password = ft.TextField(
         label="Contraseña",
@@ -43,6 +44,7 @@ def main(page : ft.Page):
         "Olvidaste tu constraseña?",
         on_click=forgot_click,
     )
+    
     page.add(
         ft.Column(
             width=220,
@@ -52,7 +54,7 @@ def main(page : ft.Page):
             horizontal_alignment=ft.CrossAxisAlignment.CENTER,
             controls=[
                 ft.Text(value="Inicio Sesion", weight=ft.FontWeight.BOLD, size=25),
-                ft.Icon(ft.Icons.LOGIN, color=ft.Colors.PRIMARY, size=100),
+                ft.Icon(ft.Icons.FACE, color=ft.Colors.PRIMARY, size=100),
                 txt_usuario,
                 password,
                 btn_login,
@@ -60,5 +62,38 @@ def main(page : ft.Page):
                 ],
             )
         )
+    def mostrar_pantalla_principal():
+        page.clean()
+        
+    page.navigation_bar=ft.NavigationBar(
+        destinations=[
+            ft.NavigationBarDestination(icon=ft.Icons.HOME, label="Inicio"),
+            ft.NavigationBarDestination(icon=ft.Icons.HOME, label="Informacion"),
+            ft.NavigationBarDestination(icon=ft.Icons.PERSON, label="Inicio de sesion"),
+        ],
+        on_change = lambda e: print(f"Seleccionado: {e.control.selected_index}")
+    )
+    
+    page.add(
+        ft.AppBar(
+            title=ft.Text("Panel principal"),
+            bgcolor=ft.Colors.BLUE_900,
+            color=ft.Colors.WHITE,
+            automatically_imply_leading=False
+        ),
+        ft.Column(
+            [
+                ft.Text("Bienvenido al sistema."),
+                ft.Text("Has iniciado sesion correctamente.")
+            ],
+            expand=True,
+            alignment=ft.MainAxisAlignment.CENTER,
+            horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+        )
+    )
+    page.update()
+    
+    ##page.add(layout_login)
+
     
 ft.run(main)
