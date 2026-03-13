@@ -27,6 +27,10 @@ def main(page : ft.Page):
         hint_text="Escriba su usuario",
         value="",
         autofocus=True,
+        color = ft.Colors.WHITE,
+        border_color=ft.Colors.WHITE,
+        label_style=ft.TextStyle(color=ft.Colors.WHITE),
+        hint_style=ft.TextStyle(color=ft.Colors.WHITE),
         suffix_icon=(ft.Icon(ft.Icons.PERSON, color=ft.Colors.GREEN, size=25)),
         height = 50,
         can_reveal_password=True
@@ -35,6 +39,9 @@ def main(page : ft.Page):
         label="Contraseña",
         hint_text="Escriba su contraseña",
         value="",
+        label_style=ft.TextStyle(color=ft.Colors.WHITE),
+        hint_style=ft.TextStyle(color=ft.Colors.WHITE),
+        border_color=ft.Colors.WHITE,
         suffix_icon=(ft.Icon(ft.Icons.PASSWORD, color=ft.Colors.GREEN, size=25)),
         password=True
 
@@ -54,7 +61,7 @@ def main(page : ft.Page):
             alignment=ft.MainAxisAlignment.CENTER,
             horizontal_alignment=ft.CrossAxisAlignment.CENTER,
             controls=[
-                ft.Text(value="Inicio Sesion", weight=ft.FontWeight.BOLD, size=25),
+                ft.Text(value="Inicio de sesion", weight=ft.FontWeight.BOLD, size=25, color=ft.Colors.WHITE),
                 ft.Icon(ft.Icons.FACE, color=ft.Colors.WHITE, size=100),
                 txt_usuario,
                 password,
@@ -85,8 +92,8 @@ def main(page : ft.Page):
             ft.Column(
                 [
                     ft.Icon(ft.Icons.BOLT, color=ft.Colors.YELLOW, size=100),
-                    ft.Text("Bienvenido al sistema."),
-                    ft.Text("Has iniciado sesion correctamente.")
+                    ft.Text("Bienvenido al sistema.", color=ft.Colors.WHITE),
+                    ft.Text("Has iniciado sesion correctamente.", color=ft.Colors.WHITE)
                 ],
                 expand=True,
                 alignment=ft.MainAxisAlignment.CENTER,
